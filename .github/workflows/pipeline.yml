@@ -1,0 +1,26 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Run k6 load test!
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  loadtest:
+    name: k6 local test run 
+    runs-on: ubuntu-latest
+    container: docker://loadimpact/k6:0.34.1
+    needs: [build]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+    
+    - name: Run k6 local test
+      uses: k6io/action@v0.1
+      with:
+        filename: hw_2.js
