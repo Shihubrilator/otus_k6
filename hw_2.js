@@ -2,7 +2,7 @@ import http from 'k6/http';
 import { check } from "k6";
 
 export const options = {
-	out: 'influxdb=http://localhost:8086/k6',
+	//out: 'influxdb=http://localhost:8086/k6',
 	scenarios: {
 		ya_scenario: {
 			executor: 'ramping-arrival-rate',
@@ -45,10 +45,13 @@ export default function(){
 export function get_ya(){
 	const res = http.get('https://ya.ru/'); // 60 rpm
 	check(res, {
-        "ya.ru: status code is 200": (res) => res.status == 200,
-    });
+        	"ya.ru: status code is 200": (res) => res.status == 200,
+    	});
 }
 
 export function get_www(){
 	http.get('http://www.ru/'); // 120 rpm
+	check(res, {
+        	"www.ru: status code is 200": (res) => res.status == 200,
+    	});
 }
