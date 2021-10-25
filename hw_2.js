@@ -47,7 +47,6 @@ export function get_ya(){
 	check(res, {
         "ya.ru: status code is 200": (res) => res.status == 200,
     });
-};
 }
 
 export function get_www(){
