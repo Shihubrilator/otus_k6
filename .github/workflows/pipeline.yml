@@ -14,7 +14,6 @@ jobs:
     name: k6 local test run 
     runs-on: ubuntu-latest
     container: docker://loadimpact/k6:0.34.1
-    needs: [build]
 
     steps:
     - name: Checkout
